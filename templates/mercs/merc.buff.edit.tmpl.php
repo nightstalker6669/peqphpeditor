@@ -101,7 +101,8 @@
             </td>
             <td>&nbsp;</td>
           </tr>
-        </table><br>
+        <tr><td><strong>Initial Duration:</strong><br><input type="number" name="InitialDuration" min="-2147483648" max="2147483647" value="<?=$buff['InitialDuration']?>"></td><td><strong>Instrument modifier:</strong><br><input type="number" name="instrument_mod" min="0" max="4294967295" value="<?=$buff['instrument_mod']?>"></td></tr>
+</table><br>
         <center>
           <input type="hidden" name="MercId" value="<?=$buff['MercId']?>">
           <input type="hidden" name="MercBuffId" value="<?=$buff['MercBuffId']?>">

@@ -1,7 +1,8 @@
 <?php
 
 $current_revision = "3 November 2026";
-$current_db_version = 9328;
+$current_db_version = 9338;
+require_once("lib/rof2_schema.php");
 
 require_once("config.php");
 require_once("lib/logging.php");

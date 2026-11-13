@@ -26,7 +26,8 @@
           <th>&nbsp;</th>
           <th>Buy<br>Price</th>
           <th>Sell<br>Price</th>
-          <th>Fact<br>Req</th>
+          <th>Language<br>Req / Skill</th>
+<th>Fact<br>Req</th>
           <th>Lvl<br>Req</th>
           <th>Alt<br>Cur</th>
           <th>Class<br>Req</th>
@@ -101,7 +102,8 @@ $round_sells = round($sells,3);
             cp
 <?endif;?>
           </td>
-          <td align="center"><?=$v['faction_required']?></td>
+          <td align="center"><?=$v['language_required']?> / <?=$v['language_skill_required']?></td>
+<td align="center"><?=$v['faction_required']?></td>
           <td align="center"><?=$v['level_required']?></td>
           <td align="center"><?=$v['alt_currency_cost']?></td>
           <td align="center"><?echo ($v['classes_required'] == 65535) ? "N" : "Y";?></td>

@@ -101,7 +101,8 @@
             </td>
             <td>&nbsp;</td>
           </tr>
-        </table><br>
+        <tr><td><strong>Initial Duration:</strong><br><input type="number" name="InitialDuration" min="-2147483648" max="2147483647" value="0"></td><td><strong>Instrument modifier:</strong><br><input type="number" name="instrument_mod" min="0" max="4294967295" value="10"></td></tr>
+</table><br>
         <center>
           <input type="hidden" name="MercId" value="<?=$MercId?>">
           <input type="submit" value="Insert Buff">&nbsp;&nbsp;

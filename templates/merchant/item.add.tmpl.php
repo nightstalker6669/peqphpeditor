@@ -107,7 +107,8 @@
                     <tr>
                       <td colspan="8" align="center"><br><input type="checkbox" id="all_classes" onChange="all_boxes_changed('classes_required[]', 'all_classes');" checked>All Classes</td>
                     </tr>
-                  </table>
+                  <tr><td><strong>Language required (-1 = none):</strong><br><input type="number" name="language_required" min="-1" max="27" value="-1"></td><td><strong>Language skill required:</strong><br><input type="number" name="language_skill_required" min="0" max="100" value="0"></td></tr>
+</table>
                 </fieldset>
               </td>
             </tr>

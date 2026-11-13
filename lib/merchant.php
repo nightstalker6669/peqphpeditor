@@ -266,12 +266,13 @@ function update_merchant_item() {
   $content_flags_disabled = $_POST['content_flags_disabled'];
   $new_slot = $_POST['new_slot'];
 
+  $language_fields = rof2_language_fields();
   $classes_value = 0;
   foreach ($classes_required as $v) {
     $classes_value = $classes_value ^ $v;
   }
 
-  $query = "UPDATE merchantlist SET slot=$new_slot, item=$item, faction_required=$faction_required, level_required=$level_required, min_status=$min_status, max_status=$max_status, alt_currency_cost=$alt_currency_cost, classes_required=$classes_value, probability=$probability, bucket_name=\"$bucket_name\", bucket_value=\"$bucket_value\", bucket_comparison=$bucket_comparison, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL WHERE merchantid=$merchantid AND slot=$slot";
+  $query = "UPDATE merchantlist SET slot=$new_slot, item=$item, faction_required=$faction_required, level_required=$level_required, min_status=$min_status, max_status=$max_status, alt_currency_cost=$alt_currency_cost, classes_required=$classes_value, probability=$probability, bucket_name=\"$bucket_name\", bucket_value=\"$bucket_value\", bucket_comparison=$bucket_comparison, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL$language_fields WHERE merchantid=$merchantid AND slot=$slot";
   $mysql_content_db->query_no_result($query);
 
   if ($content_flags != "") {
@@ -365,12 +366,13 @@ function add_merchant_item() {
   $content_flags = $_POST['content_flags'];
   $content_flags_disabled = $_POST['content_flags_disabled'];
 
+  $language_fields = rof2_language_fields();
   $classes_value = 0;
   foreach ($classes_required as $v) {
     $classes_value = $classes_value ^ $v;
   }
 
-  $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, min_status=$min_status, max_status=$max_status, alt_currency_cost=$alt_currency_cost, classes_required=$classes_value, probability=$probability, bucket_name=\"$bucket_name\", bucket_value=\"$bucket_value\", bucket_comparison=$bucket_comparison, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+  $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, min_status=$min_status, max_status=$max_status, alt_currency_cost=$alt_currency_cost, classes_required=$classes_value, probability=$probability, bucket_name=\"$bucket_name\", bucket_value=\"$bucket_value\", bucket_comparison=$bucket_comparison, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL$language_fields";
   $mysql_content_db->query_no_result($query);
 
   if ($content_flags != "") {
@@ -492,19 +494,13 @@ function drop_merchantlist() {
 function copy_merchantlist() {
   check_authorization();
   global $mysql_content_db, $npcid;
-  $mid = $_POST['mid'];
+  $mid = intval($_POST['mid'] ?? $_GET['mid'] ?? 0);
 
   $query = "SELECT MAX(merchantid) AS merid FROM merchantlist";
   $result = $mysql_content_db->query_assoc($query);
   $nmid = $result['merid'] + 1;
 
-  $query = "DELETE FROM merchantlist WHERE merchantid=0";
-  $mysql_content_db->query_no_result($query);
-
-  $query = "INSERT INTO merchantlist (slot, item, faction_required, level_required, min_status, max_status, alt_currency_cost, classes_required, probability, bucket_name, bucket_value, bucket_comparison, min_expansion, max_expansion, content_flags, content_flags_disabled) SELECT slot, item, faction_required, level_required, min_status, max_status, alt_currency_cost, classes_required, probability, bucket_name, bucket_value, bucket_comparison, min_expansion, max_expansion, content_flags, content_flags_disabled FROM merchantlist WHERE merchantid=$mid";
-  $mysql_content_db->query_no_result($query);
-
-  $query = "UPDATE merchantlist SET merchantid=$nmid WHERE merchantid=0";
+  $query = "INSERT INTO merchantlist (merchantid, slot, item, faction_required, level_required, min_status, max_status, alt_currency_cost, classes_required, probability, bucket_name, bucket_value, bucket_comparison, min_expansion, max_expansion, content_flags, content_flags_disabled, language_required, language_skill_required) SELECT $nmid, slot, item, faction_required, level_required, min_status, max_status, alt_currency_cost, classes_required, probability, bucket_name, bucket_value, bucket_comparison, min_expansion, max_expansion, content_flags, content_flags_disabled, language_required, language_skill_required FROM merchantlist WHERE merchantid=$mid";
   $mysql_content_db->query_no_result($query);
 
   $query = "UPDATE npc_types SET merchant_id=$nmid WHERE id=$npcid";

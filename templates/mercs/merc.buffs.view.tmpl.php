@@ -14,7 +14,7 @@
         <td align="center" width="45%"><strong>Spell</strong></td>
         <td align="center" width="15%"><strong>Caster Level</strong></td>
         <td align="center" width="15%"><strong>Tics Remaining</strong></td>
-        <td width="10%">&nbsp;</td>
+        <td>Initial Duration</td><td>Instrument modifier</td><td width="10%">&nbsp;</td>
       </tr>
 <?$x=0;
 foreach($buffs as $buff):?>
@@ -23,7 +23,7 @@ foreach($buffs as $buff):?>
         <td align="center" width="45%"><?=getSpellName($buff['SpellId'])?> (<?=$buff['SpellId']?>)</td>
         <td align="center" width="15%"><?=$buff['CasterLevel']?></td>
         <td align="center" width="15%"><?=$buff['TicsRemaining']?></td>
-        <td align="right" width="10%">
+        <td><?=$buff['InitialDuration']?></td><td><?=$buff['instrument_mod']?></td><td align="right" width="10%">
           <a href="index.php?editor=mercs&MercBuffId=<?=$buff['MercBuffId']?>&action=82"><img src="images/edit2.gif" width="13" height="13" border="0" title="Edit Mercenary Buff"></a>&nbsp;
           <a href="index.php?editor=mercs&MercId=<?=$buff['MercId']?>&MercBuffId=<?=$buff['MercBuffId']?>&action=84" onClick="return confirm('Really delete mercenary buff?');"><img src="images/remove.gif" width="13" height="13" border="0" title="Delete Mercenary Buff"></a>
         </td>

@@ -1890,7 +1890,8 @@ function insert_merc_buff() {
 
   $MercBuffId = $_POST['MercBuffId'];
   $MercId = $_POST['MercId'];
-  $SpellId = $_POST['SpellId'];
+  $SpellId = rof2_integer('SpellId',0,2147483647);
+  $additional_fields = rof2_merc_buff_fields();
   $CasterLevel = $_POST['CasterLevel'];
   $DurationFormula = $_POST['DurationFormula'];
   $TicsRemaining = $_POST['TicsRemaining'];
@@ -1908,7 +1909,7 @@ function insert_merc_buff() {
   $caston_z = $_POST['caston_z'];
   $ExtraDIChance = $_POST['ExtraDIChance'];
 
-  $query = "INSERT INTO merc_buffs SET MercBuffId=$MercBuffId, MercId=$MercId, SpellId=$SpellId, CasterLevel=$CasterLevel, DurationFormula=$DurationFormula, TicsRemaining=$TicsRemaining, PoisonCounters=$PoisonCounters, DiseaseCounters=$DiseaseCounters, CurseCounters=$CurseCounters, CorruptionCounters=$CorruptionCounters, HitCount=$HitCount, MeleeRune=$MeleeRune, MagicRune=$MagicRune, dot_rune=$dot_rune, caston_x=$caston_x, Persistent=$Persistent, caston_y=$caston_y, caston_z=$caston_z, ExtraDIChance=$ExtraDIChance";
+  $query = "INSERT INTO merc_buffs SET MercBuffId=$MercBuffId, MercId=$MercId, SpellId=$SpellId, CasterLevel=$CasterLevel, DurationFormula=$DurationFormula, TicsRemaining=$TicsRemaining, PoisonCounters=$PoisonCounters, DiseaseCounters=$DiseaseCounters, CurseCounters=$CurseCounters, CorruptionCounters=$CorruptionCounters, HitCount=$HitCount, MeleeRune=$MeleeRune, MagicRune=$MagicRune, dot_rune=$dot_rune, caston_x=$caston_x, Persistent=$Persistent, caston_y=$caston_y, caston_z=$caston_z, ExtraDIChance=$ExtraDIChance$additional_fields";
   $mysql->query_no_result($query);
 }
 
@@ -1917,7 +1918,8 @@ function update_merc_buff() {
 
   $MercBuffId = $_POST['MercBuffId'];
   $MercId = $_POST['MercId'];
-  $SpellId = $_POST['SpellId'];
+  $SpellId = rof2_integer('SpellId',0,2147483647);
+  $additional_fields = rof2_merc_buff_fields();
   $CasterLevel = $_POST['CasterLevel'];
   $DurationFormula = $_POST['DurationFormula'];
   $TicsRemaining = $_POST['TicsRemaining'];
@@ -1935,7 +1937,7 @@ function update_merc_buff() {
   $caston_z = $_POST['caston_z'];
   $ExtraDIChance = $_POST['ExtraDIChance'];
 
-  $query = "UPDATE merc_buffs SET MercId=$MercId, SpellId=$SpellId, CasterLevel=$CasterLevel, DurationFormula=$DurationFormula, TicsRemaining=$TicsRemaining, PoisonCounters=$PoisonCounters, DiseaseCounters=$DiseaseCounters, CurseCounters=$CurseCounters, CorruptionCounters=$CorruptionCounters, HitCount=$HitCount, MeleeRune=$MeleeRune, MagicRune=$MagicRune, dot_rune=$dot_rune, caston_x=$caston_x, Persistent=$Persistent, caston_y=$caston_y, caston_z=$caston_z, ExtraDIChance=$ExtraDIChance WHERE MercBuffId=$MercBuffId";
+  $query = "UPDATE merc_buffs SET MercId=$MercId, SpellId=$SpellId, CasterLevel=$CasterLevel, DurationFormula=$DurationFormula, TicsRemaining=$TicsRemaining, PoisonCounters=$PoisonCounters, DiseaseCounters=$DiseaseCounters, CurseCounters=$CurseCounters, CorruptionCounters=$CorruptionCounters, HitCount=$HitCount, MeleeRune=$MeleeRune, MagicRune=$MagicRune, dot_rune=$dot_rune, caston_x=$caston_x, Persistent=$Persistent, caston_y=$caston_y, caston_z=$caston_z, ExtraDIChance=$ExtraDIChance$additional_fields WHERE MercBuffId=$MercBuffId";
   $mysql->query_no_result($query);
 }
 
